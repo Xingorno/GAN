@@ -1,0 +1,14 @@
+version: '3.3'
+
+services:
+  dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - 127.0.0.1:9922:22
+    volumes:
+      - .:/code/
+    environment:
+      DEV: 'True'
+    env_file: local.env
