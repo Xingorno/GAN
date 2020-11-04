@@ -10,6 +10,7 @@ def get_generator_block(input_dim, output_dim):
     )
 
 
+
 def test_generator_block(in_features, out_features, num_test = 1000):
     block = get_generator_block(in_features, out_features)
 
@@ -23,7 +24,7 @@ def test_generator_block(in_features, out_features, num_test = 1000):
     test_input = torch.randn(num_test, in_features)
     test_output = block(test_input)
     assert tuple(test_output.shape) == (num_test, out_features)
-    assert test_output.std() > 0.55 # why ??
+    assert test_output.std() > 0.55 # Post Normalization, SD will be 1, after Relu, SD will be 0.5
     assert test_output.std() < 0.65
 
 test_generator_block(25, 12)
@@ -41,9 +42,6 @@ class Generator(nn.Module):
             nn.Linear(hidden_dim * 8, im_dim),
             nn.Sigmoid(),
         )
-    def forward(self, noise):
-        return self.gen(noise)
-    
     def get_gen(self):
         return self.gen
 
@@ -65,3 +63,6 @@ test_generator(20, 8, 24)
 
 
 print("Generator side")
+
+a = torch.randn(2,4)
+print(a)

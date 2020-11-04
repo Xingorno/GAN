@@ -16,6 +16,10 @@ def show_tensor_images(image_tensor, num_images = 25, size = (1, 28, 28)):
     plt.imshow(image_grid.permute(1, 2, 0).squeeze())
     plt.show()
 
-dataloader = DataLoader(MNIST('.', download = False, transform = transforms.ToTensor()), batch_size = 128, shuffle = True) 
+dataloader = DataLoader(MNIST('.', download = False, transform = transforms.ToTensor()),\
+    batch_size = 128, shuffle = True) 
 
 print("hello world")
+
+
+
