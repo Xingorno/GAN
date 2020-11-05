@@ -42,6 +42,9 @@ class Generator(nn.Module):
             nn.Linear(hidden_dim * 8, im_dim),
             nn.Sigmoid(),
         )
+    def forward(self, noise):
+        return self.gen(noise)
+        
     def get_gen(self):
         return self.gen
 
