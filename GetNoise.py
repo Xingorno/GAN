@@ -1,5 +1,8 @@
 import torch
-
+#import PyQt5
+#import matplotlib
+#matplotlib.use('Qt5Agg')
+import matplotlib.pyplot as plt 
 def get_noise(n_samples, z_dim, device = 'cpu'):
 
     return torch.randn(n_samples, z_dim, device = device)
@@ -8,7 +11,9 @@ def get_noise(n_samples, z_dim, device = 'cpu'):
 def test_get_noise(n_samples, z_dim, device = 'cpu'):
 
     noise = get_noise(n_samples, z_dim, device)
-
+    plt.figure()
+    plt.imshow(noise)
+    plt.show()
     # output shape/size
     assert tuple(noise.shape) == (n_samples, z_dim)
     # output value (roughly range)
